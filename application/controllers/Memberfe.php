@@ -118,4 +118,11 @@ class Memberfe extends CI_Controller
             }
         }
     }
+
+    public function detail_produk($idProduk)
+    {
+        $detail = $this->Mfrontend->detailDataProduk($idProduk);
+        $data['detail'] = $detail;
+        $this->template->load('layout_member', 'member/home/detail_produk', $data);
+    }
 }
