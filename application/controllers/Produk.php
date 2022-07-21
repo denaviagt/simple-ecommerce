@@ -41,7 +41,7 @@ class Produk extends CI_Controller
         if ($foto = '') {
         } else {
             $config['upload_path'] = './assets/fotoproduk';
-            $config['allowed_types'] = 'jpg|png';
+            $config['allowed_types'] = 'jpg|jpeg|png';
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('foto')) {
