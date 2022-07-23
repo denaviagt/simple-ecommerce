@@ -6,7 +6,7 @@ class Home extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Mcrud');
+        $this->load->model('Mcrud', 'Mfrontend');
     }
 
 
@@ -61,5 +61,26 @@ class Home extends CI_Controller
         //$data['idKota'] = $this->Mcrud->get_all_data('tbl_kota')->result_array();
 
         $this->template->load('layout_member', 'member/login/form');
+    }
+
+    public function cart()
+    {
+        $this->load->library('cart');
+        $this->template->load('layout_member', 'member/cart/index');
+    }
+
+    public function add_cart_item($id)
+    {
+        $this->load->library('cart');
+        $data['produk'] = $this->Mfrontend->get_by_id('tbl_produk', ['idProduk' => $id])->row();
+        $dataTroli = [
+            'id' => $id,
+            'qty' => 1,
+            'price' => $data['produk']->harga,
+            'name' => $data['produk']->namaProduk,
+            'options' => ['image' => $data['produk']->foto]
+        ];
+        $this->cart->insert($dataTroli);
+        redirect('home/cart');
     }
 }
