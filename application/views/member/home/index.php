@@ -84,7 +84,7 @@
 
                                 <p><?php echo $val->deskripsiProduk; ?> </p>
                                 <div class="article-cta">
-                                    <a href="<?php echo site_url('memberfe/cart_tambah/' . $val->idProduk); ?>"
+                                        <a href="<?php echo site_url('home/add_cart_item/' . $val->idProduk) ?>"
                                         class="btn btn-primary">Add to cart</a>
                                 </div>
                             </div>
