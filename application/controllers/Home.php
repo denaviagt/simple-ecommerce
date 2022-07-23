@@ -66,7 +66,7 @@ class Home extends CI_Controller
     public function cart()
     {
         $this->load->library('cart');
-        $this->template->load('layout_member', 'member/cart/index');
+        $this->template->load('layout_member', 'member/home/keranjang');
     }
 
     public function add_cart_item($id)
