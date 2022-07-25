@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 08, 2022 at 04:31 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Host: localhost:3306
+-- Generation Time: Jul 25, 2022 at 01:59 PM
+-- Server version: 5.7.33
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,8 +18,32 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tokokita_2456`
+-- Database: `tokokita`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kesan`
+--
+
+CREATE TABLE `kesan` (
+  `id_kesan` int(11) NOT NULL,
+  `Nama` varchar(100) NOT NULL,
+  `Email` varchar(150) NOT NULL,
+  `Subject` varchar(50) NOT NULL,
+  `Kesan` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `kesan`
+--
+
+INSERT INTO `kesan` (`id_kesan`, `Nama`, `Email`, `Subject`, `Kesan`) VALUES
+(1, 'Anggita', 'anggita.via@gmail.com', 'Jasa Pengiriman', 'Pengiriman cepat dan kurir ramah. '),
+(2, 'Rahmadita', 'rahma@gmail.com', 'Saran produk', 'Produk bagus-bagus, kalau bisa ditambahkan lagi variasinya.'),
+(3, 'Eka', 'eka@mail.com', 'Pengiriman', 'Pengiriman Lama'),
+(4, 'Anggita', 'admin@gmail.com', 'Saran produk', 'Pengiriman cepat dan kurir ramah. ');
 
 -- --------------------------------------------------------
 
@@ -75,6 +100,19 @@ CREATE TABLE `tbl_detail_order` (
   `jumlah` int(5) NOT NULL,
   `harga` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_detail_order`
+--
+
+INSERT INTO `tbl_detail_order` (`idDetailOrder`, `idOrder`, `idProduk`, `jumlah`, `harga`) VALUES
+(1, 1, 4, 3, 300000),
+(2, 2, 4, 1, 100000),
+(3, 2, 4, 1, 100000),
+(4, 2, 3, 1, 2000),
+(5, 3, 4, 1, 100000),
+(6, 4, 4, 1, 100000),
+(7, 5, 4, 1, 100000);
 
 -- --------------------------------------------------------
 
@@ -170,7 +208,8 @@ CREATE TABLE `tbl_member` (
 --
 
 INSERT INTO `tbl_member` (`idKonsumen`, `username`, `password`, `namaKonsumen`, `alamat`, `idKota`, `email`, `tlpn`, `statusAktif`) VALUES
-(1, 'tes', '123', 'tes', 'tes', 2, 'tes@gmail.com', 81, 'Y');
+(1, 'tes', '123', 'tes', 'tes', 2, 'tes@gmail.com', 81, 'Y'),
+(5, 'arin', '12345', 'Sabrina', 'Jawa Tengah', 3, 'arin@gmail.com', 2147483647, 'Y');
 
 -- --------------------------------------------------------
 
@@ -184,6 +223,17 @@ CREATE TABLE `tbl_order` (
   `tglOrder` date NOT NULL,
   `statusOrder` enum('Belum Bayar','Dikemas','Dikirim','Diterima','Selesai','Dibatalkan') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_order`
+--
+
+INSERT INTO `tbl_order` (`idOrder`, `idKonsumen`, `tglOrder`, `statusOrder`) VALUES
+(1, 1, '2022-07-25', 'Belum Bayar'),
+(2, 1, '2022-07-25', 'Belum Bayar'),
+(3, 1, '2022-07-25', 'Belum Bayar'),
+(4, 1, '2022-07-25', 'Belum Bayar'),
+(5, 1, '2022-07-25', 'Belum Bayar');
 
 -- --------------------------------------------------------
 
@@ -208,7 +258,36 @@ CREATE TABLE `tbl_produk` (
 --
 
 INSERT INTO `tbl_produk` (`idProduk`, `idKat`, `idToko`, `namaProduk`, `foto`, `harga`, `stok`, `berat`, `deskripsiProduk`) VALUES
-(7, 1, 2, 'Batik', '381154431_18284da5-f581-4ab3-a74f-b0ed12e8aa18_1280_1280.jpg', 150000, 2, 1, 'Batik bagus dengan bahan yang sangat panas tidak cocok digunakan oleh anda, maaf tidak kami jual');
+(1, 2, 2, 'tes', 'tes.jpg', 2000, 2, 2, 'tes'),
+(2, 2, 2, 'Celana Jeas', '1.jpeg', 222, 2, 2, 'sasa'),
+(3, 2, 2, 'Celana JeaNS GODDDD', '2.jpeg', 2000, 2, 2, 'MUMETTT'),
+(4, 2, 2, 'Celana Jeans SlimFit', 'images.jpeg', 100000, 100, 1, 'Celana Jeans Slim Fit');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_produk_diskusi`
+--
+
+CREATE TABLE `tbl_produk_diskusi` (
+  `id` int(11) NOT NULL,
+  `idKonsumen` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `idProduk` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_produk_diskusi`
+--
+
+INSERT INTO `tbl_produk_diskusi` (`id`, `idKonsumen`, `comment`, `date`, `idProduk`) VALUES
+(1, 5, 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book', '2022-07-25 13:13:16', 4),
+(2, 5, 'Bootstrap 5 comments list with font awesome icons and toggle button', '2022-07-25 13:18:10', 4),
+(3, 1, 'aaa', '2022-07-25 06:51:52', 4),
+(4, 1, 'KOmentar BAru', '2022-07-25 06:52:40', 4),
+(5, 1, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2022-07-25 14:01:34', 3),
+(6, 1, 'halo', '2022-07-25 13:50:57', 4);
 
 -- --------------------------------------------------------
 
@@ -243,12 +322,15 @@ CREATE TABLE `tbl_toko` (
 --
 
 INSERT INTO `tbl_toko` (`idToko`, `idKonsumen`, `namaToko`, `logo`, `deskripsi`, `statusAktif`) VALUES
-(2, 1, 'Toko Suka Suka', 'img.jpg', 'Menjual barang tidak berguna', 'Y');
+(2, 1, 'Toko Suka Suka', '.jpg', 'Menjual barang tidak berguna', 'Y'),
+(9, 1, 'Tes', '2', 'Desk', 'Y'),
+(10, 1, 'Tes', 'Screen Shot 2022-07-07 at 17.30.34.png', 'kkk', 'Y');
 
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_tbl_biaya_kirim`
+-- (See below for the actual view)
 --
 CREATE TABLE `v_tbl_biaya_kirim` (
 `idBiayaKirim` int(5)
@@ -265,11 +347,17 @@ CREATE TABLE `v_tbl_biaya_kirim` (
 --
 DROP TABLE IF EXISTS `v_tbl_biaya_kirim`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_tbl_biaya_kirim`  AS  select `bk`.`idBiayaKirim` AS `idBiayaKirim`,`k`.`namaKurir` AS `namaKurir`,`kt`.`namaKota` AS `kotaAsal`,`ktt`.`namaKota` AS `kotaTujuan`,`bk`.`biaya` AS `biaya` from (((`tbl_biaya_kirim` `bk` join `tbl_kurir` `k` on((`k`.`idKurir` = `bk`.`idKurir`))) join `tbl_kota` `kt` on((`kt`.`idKota` = `bk`.`idKotaAsal`))) join `tbl_kota` `ktt` on((`ktt`.`idKota` = `bk`.`idKotaTujuan`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_tbl_biaya_kirim`  AS SELECT `bk`.`idBiayaKirim` AS `idBiayaKirim`, `k`.`namaKurir` AS `namaKurir`, `kt`.`namaKota` AS `kotaAsal`, `ktt`.`namaKota` AS `kotaTujuan`, `bk`.`biaya` AS `biaya` FROM (((`tbl_biaya_kirim` `bk` join `tbl_kurir` `k` on((`k`.`idKurir` = `bk`.`idKurir`))) join `tbl_kota` `kt` on((`kt`.`idKota` = `bk`.`idKotaAsal`))) join `tbl_kota` `ktt` on((`ktt`.`idKota` = `bk`.`idKotaTujuan`)))  ;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `kesan`
+--
+ALTER TABLE `kesan`
+  ADD PRIMARY KEY (`id_kesan`);
 
 --
 -- Indexes for table `tbl_admin`
@@ -342,6 +430,14 @@ ALTER TABLE `tbl_produk`
   ADD KEY `idToko` (`idToko`);
 
 --
+-- Indexes for table `tbl_produk_diskusi`
+--
+ALTER TABLE `tbl_produk_diskusi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_diskusi_user` (`idKonsumen`),
+  ADD KEY `fk_diskusi_produk` (`idProduk`);
+
+--
 -- Indexes for table `tbl_saldo`
 --
 ALTER TABLE `tbl_saldo`
@@ -360,65 +456,89 @@ ALTER TABLE `tbl_toko`
 --
 
 --
+-- AUTO_INCREMENT for table `kesan`
+--
+ALTER TABLE `kesan`
+  MODIFY `id_kesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
   MODIFY `idAdmin` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `tbl_biaya_kirim`
 --
 ALTER TABLE `tbl_biaya_kirim`
   MODIFY `idBiayaKirim` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `tbl_detail_order`
 --
 ALTER TABLE `tbl_detail_order`
-  MODIFY `idDetailOrder` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDetailOrder` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `tbl_kategori`
 --
 ALTER TABLE `tbl_kategori`
   MODIFY `idKat` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `tbl_konfirmasi`
 --
 ALTER TABLE `tbl_konfirmasi`
   MODIFY `idKonfirmasi` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `tbl_kota`
 --
 ALTER TABLE `tbl_kota`
   MODIFY `idKota` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `tbl_kurir`
 --
 ALTER TABLE `tbl_kurir`
   MODIFY `idKurir` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `tbl_member`
 --
 ALTER TABLE `tbl_member`
-  MODIFY `idKonsumen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idKonsumen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `idOrder` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `idOrder` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `tbl_produk`
 --
 ALTER TABLE `tbl_produk`
-  MODIFY `idProduk` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idProduk` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_produk_diskusi`
+--
+ALTER TABLE `tbl_produk_diskusi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `tbl_saldo`
 --
 ALTER TABLE `tbl_saldo`
   MODIFY `idSaldo` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `tbl_toko`
 --
 ALTER TABLE `tbl_toko`
-  MODIFY `idToko` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idToko` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- Constraints for dumped tables
 --
@@ -464,6 +584,13 @@ ALTER TABLE `tbl_produk`
   ADD CONSTRAINT `tbl_produk_ibfk_2` FOREIGN KEY (`idToko`) REFERENCES `tbl_toko` (`idToko`);
 
 --
+-- Constraints for table `tbl_produk_diskusi`
+--
+ALTER TABLE `tbl_produk_diskusi`
+  ADD CONSTRAINT `fk_diskusi_produk` FOREIGN KEY (`idProduk`) REFERENCES `tbl_produk` (`idProduk`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_diskusi_user` FOREIGN KEY (`idKonsumen`) REFERENCES `tbl_member` (`idKonsumen`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tbl_saldo`
 --
 ALTER TABLE `tbl_saldo`
@@ -474,6 +601,7 @@ ALTER TABLE `tbl_saldo`
 --
 ALTER TABLE `tbl_toko`
   ADD CONSTRAINT `tbl_toko_ibfk_1` FOREIGN KEY (`idKonsumen`) REFERENCES `tbl_member` (`idKonsumen`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
