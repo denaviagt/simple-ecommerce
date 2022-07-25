@@ -73,7 +73,7 @@ class Memberfe extends CI_Controller
 
     public function cart_tambah($idProduk)
     {
-        $status = $this->session->userdata('status');
+        $status = $this->session->userdata('id');
         if (empty($status)) {
             redirect('home/login');
         } else {

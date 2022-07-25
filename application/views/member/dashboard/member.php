@@ -16,10 +16,14 @@
                         </div>
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column">
-                                <li class="nav-item"><a href="<?php echo site_url('memberfe') ?>" class="nav-link">Beranda</a></li>
+                                <li class="nav-item"><a href="<?php echo site_url('memberfe') ?>"
+                                        class="nav-link">Beranda</a></li>
+                                <li class="nav-item"><a href="<?= site_url('home/cart')?>"
+                                        class="nav-link">Keranjang</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Transaksi</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Riwayat Transaksi</a></li>
-                                <li class="nav-item"><a href="<?php echo site_url('toko') ?>" class="nav-link">Toko</a></li>
+                                <li class="nav-item"><a href="<?php echo site_url('toko') ?>" class="nav-link">Toko</a>
+                                </li>
                                 <li class="nav-item"><a href="#" class="nav-link">Ubah Profil</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
                             </ul>

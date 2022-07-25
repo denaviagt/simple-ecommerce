@@ -29,6 +29,12 @@ class Mfrontend extends CI_Model
         return $this->db->get_where($tabel, $id);
     }
 
+    public function getUser($id)
+    {
+        $this->db->where('idKonsumen', $id);
+        return $this->db->get('tbl_member');
+    }
+
     public function get_all_data_kategori()
     {
         return $this->db->get('tbl_kategori');
@@ -50,5 +56,38 @@ class Mfrontend extends CI_Model
     {
         $query = $this->db->get_where('tbl_produk', array('idProduk' => $idProduk))->row();
         return $query;
+    }
+
+    public function insertOrder($data)
+    {        
+        $insert = $this->db->insert('tbl_order', $data);
+
+        return $insert?$this->db->insert_id():false;
+    }
+
+    public function insertOrderItems($data)
+    {
+          $insert = $this->db->insert_batch('tbl_detail_order', $data);
+
+          return $insert?true:false;
+    }
+
+    public function getOrder($id)
+    {
+        $this->db->select('o.*, k.username, k.namaKonsumen, k.alamat, k.tlpn, k.email');
+        $this->db->from('tbl_order as o');
+        $this->db->join('tbl_member as k', 'k.idKonsumen = o.idKonsumen', 'left');
+        $this->db->where('o.idOrder', $id);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        
+        $this->db->select('do.*, p.namaProduk, p.foto, p.harga, p.stok, p.berat');
+        $this->db->from('tbl_detail_order as do');
+        $this->db->join('tbl_produk as p', 'p.idProduk = do.idProduk', 'left');
+        $this->db->where('do.idOrder', $id);
+        $query2 = $this->db->get();
+        $result['items'] = ($query2->num_rows() > 0)?$query2->result_array():array();
+        
+        return !empty($result)?$result:false;
     }
 }
