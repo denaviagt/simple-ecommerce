@@ -8,6 +8,7 @@ class Memberfe extends CI_Controller
         parent::__construct();
         $this->load->model('Mmember');
         $this->load->model('Mfrontend');
+        $this->load->model('DiskusiProduk');
     }
 
     public function act_login()
@@ -121,8 +122,14 @@ class Memberfe extends CI_Controller
 
     public function detail_produk($idProduk)
     {
-        $detail = $this->Mfrontend->detailDataProduk($idProduk);
+        $detail         = $this->Mfrontend->detailDataProduk($idProduk);
+        $diskusi_pro    = $this->DiskusiProduk->getData($idProduk)->result();
+        $count_diskusi  = $this->DiskusiProduk->countData($idProduk);
+
         $data['detail'] = $detail;
+        $data['diskusi'] = $diskusi_pro;
+        $data['count_diskusi'] = $count_diskusi;
+        
         $this->template->load('layout_member', 'member/home/detail_produk', $data);
     }
 }

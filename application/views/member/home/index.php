@@ -34,15 +34,6 @@
                                             tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
                                 </div>
-                                <!-- <div class="carousel-item">
-                                    <img class="d-block w-100"
-                                        src="<?= base_url() ?>assets/admin/assets/img/news/img03.jpg" alt="Third slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Heading</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div> -->
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button"
                                 data-slide="prev">
@@ -68,7 +59,7 @@
                 <?php foreach ($produk_terbaru as $val) { ?>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                     <a href="<?=base_url() ?>index.php/memberfe/detail_produk/<?= $val->idProduk?>">
-                        <article class="article">
+                        <article class="article rounded">
                             <div class="article-header">
                                 <div class="article-image"
                                     data-background="<?php echo base_url(); ?>assets/fotoproduk/<?= $val->foto; ?>"
@@ -80,11 +71,11 @@
                                 </div>
                             </div>
 
-                            <div class="article-details">
+                            <div class="article-details text-center">
 
-                                <p><?php echo $val->deskripsiProduk; ?> </p>
+                                <p>Rp <?php echo $val->harga; ?> </p>
                                 <div class="article-cta">
-                                        <a href="<?php echo site_url('home/add_cart_item/' . $val->idProduk) ?>"
+                                    <a href="<?php echo site_url('home/add_cart_item/' . $val->idProduk) ?>"
                                         class="btn btn-primary">Add to cart</a>
                                 </div>
                             </div>
@@ -97,6 +88,7 @@
 
 
             </div>
+
 
             <h2 class="section-title">Produk Terlaris</h2>
             <p class="section-lead">This article component is based on card and flexbox.</p>

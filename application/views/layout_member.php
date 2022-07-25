@@ -16,6 +16,7 @@
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/admin/assets/css/style.css '); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/assets/css/custom.css '); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/admin/assets/css/components.css'); ?>">
 </head>
 

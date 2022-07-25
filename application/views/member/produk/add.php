@@ -17,7 +17,8 @@
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column">
                                 <li class="nav-item"><a href="" class="nav-link">Beranda</a></li>
-                                <li class="nav-item"><a href="<?php echo site_url('produk') ?>" class="nav-link">Produk</a></li>
+                                <li class="nav-item"><a href="<?php echo site_url('produk') ?>"
+                                        class="nav-link">Produk</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Pesanan</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Laporan</a></li>
                             </ul>
@@ -42,15 +43,16 @@
                                         <select class="form-control" id="idKat" name="idKat">
                                             <!-- <option value="" disabled selected>Pilih</option> -->
                                             <?php foreach ($kategori as $kr) { ?>
-                                                <option value="<?= $kr['idKat'] ?>">
-                                                    <?= $kr['namakat'] ?>
-                                                </option>
+                                            <option value="<?= $kr['idkat'] ?>">
+                                                <?= $kr['namakat'] ?>
+                                            </option>
                                             <?php } ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Nama Produk</label>
-                                        <input type="text" class="form-control" id="input namaProduk" name="namaProduk" required>
+                                        <input type="text" class="form-control" id="input namaProduk" name="namaProduk"
+                                            required>
                                     </div>
                                     <div class="form-group">
                                         <label>Foto Produk</label>
@@ -70,7 +72,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Deskripsi Produk</label>
-                                        <textarea class="form-control" id="input deskripsiProduk" name="deskripsiProduk" required></textarea>
+                                        <textarea class="form-control" id="input deskripsiProduk" name="deskripsiProduk"
+                                            required></textarea>
                                     </div>
                                     <div class="card-footer text-right">
                                         <button class="btn btn-primary mr-1" type="submit">Submit</button>
