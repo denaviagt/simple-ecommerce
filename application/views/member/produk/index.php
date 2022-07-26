@@ -16,8 +16,10 @@
                         </div>
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column">
-                                <li class="nav-item"><a href="" class="nav-link">Beranda</a></li>
-                                <li class="nav-item"><a href="<?php echo site_url('produk') ?>" class="nav-link">Produk</a></li>
+                                <li class="nav-item"><a href="<?= base_url('index.php/toko/main/' . $id_toko) ?>"
+                                        class="nav-link">Beranda</a></li>
+                                <li class="nav-item"><a href="<?php echo site_url('produk/index/'. $id_toko) ?>"
+                                        class="nav-link">Produk</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Pesanan</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Laporan</a></li>
                             </ul>
@@ -29,7 +31,8 @@
                         <div class="col-lg-12 col-md-6 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="<?php echo site_url('produk/add_produk') ?>" class="btn btn-primary">Silakan Membuat Produk</a>
+                                    <a href="<?php echo site_url('produk/add_produk') ?>"
+                                        class="btn btn-primary">Silakan Membuat Produk</a>
                                     <hr>
                                     <h4>Data Produk</h4>
                                 </div>
@@ -45,13 +48,14 @@
                                         </thead>
                                         <tbody>
                                             <?php foreach ($produk as $item) { ?>
-                                                <tr>
-                                                    <td><?= $item['namaProduk']; ?></td>
-                                                    <td><?= $item['harga']; ?></td>
-                                                    <td><?= $item['stok']; ?></td>
-                                                    <td><a href="<?= base_url('index.php/produk/detail/' . $item['idProduk']) ?>" class="btn btn-primary">Detail</a>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td><?= $item['namaProduk']; ?></td>
+                                                <td><?= $item['harga']; ?></td>
+                                                <td><?= $item['stok']; ?></td>
+                                                <td><a href="<?= base_url('index.php/produk/detail/' . $item['idProduk']) ?>"
+                                                        class="btn btn-primary">Detail</a>
+                                                </td>
+                                            </tr>
                                             <?php } ?>
                                         </tbody>
                                     </table>

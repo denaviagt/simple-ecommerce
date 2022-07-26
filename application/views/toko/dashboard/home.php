@@ -16,8 +16,10 @@
                         </div>
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column">
-                                <li class="nav-item"><a href="" class="nav-link">Beranda</a></li>
-                                <li class="nav-item"><a href="<?php echo site_url('produk') ?>" class="nav-link">Produk</a></li>
+                                <li class="nav-item"><a href="<?= base_url('index.php/toko/main/' . $toko->idToko) ?>"
+                                        class="nav-link">Beranda</a></li>
+                                <li class="nav-item"><a href="<?php echo site_url('produk/index/'. $toko->idToko) ?>"
+                                        class="nav-link">Produk</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Pesanan</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Laporan</a></li>
                             </ul>

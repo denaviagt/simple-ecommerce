@@ -10,13 +10,14 @@ class Produk extends CI_Controller
         $this->load->model('Mfrontend');
     }
 
-    public function index()
+    public function index($id)
     {
         if (empty($this->session->userdata('userName'))) {
             redirect('Memberfe/act_login');
         }
 
-        $data['produk'] = $this->Mfrontend->get_all_data('tbl_produk')->result_array();
+        $data['produk'] = $this->Mfrontend->get_all_produk_by_toko($id)->result_array();
+        $data['id_toko'] = $id;
         $this->template->load('layout_member', 'member/produk/index', $data);
     }
 

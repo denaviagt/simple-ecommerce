@@ -52,6 +52,12 @@ class Mfrontend extends CI_Model
         return $this->db->get('tbl_produk');
     }
 
+    public function get_all_produk_by_toko($id)
+    {
+        $this->db->where('idToko', $id);
+        return $this->db->get('tbl_produk');
+    }
+
     public function detailDataProduk($idProduk = NULL)
     {
         $query = $this->db->get_where('tbl_produk', array('idProduk' => $idProduk))->row();
@@ -103,5 +109,18 @@ class Mfrontend extends CI_Model
         $this->db->where('idOrder', $id);
 
         $this->db->update('tbl_order', $data);
+    }
+
+    public function getOrderByToko($id)
+    {
+        $this->db->select('o.*, k.username, k.namaKonsumen, k.alamat, k.tlpn, k.email, do.jumlah, do.harga, p.namaProduk, p.foto');
+        $this->db->from('tbl_order as o');
+        $this->db->join('tbl_detail_order as do', 'do.idOrder = o.idOrder');
+        $this->db->join('tbl_produk as p', 'p.idProduk = do.idProduk');
+        $this->db->join('tbl_member as k', 'k.idKonsumen = o.idKonsumen', 'left');
+        $this->db->where('p.idToko', $id);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return !empty($result)?$result:false;
     }
 }
