@@ -90,4 +90,18 @@ class Mfrontend extends CI_Model
         
         return !empty($result)?$result:false;
     }
+
+    public function inputPayment($data)
+    {
+        $insert = $this->db->insert('tbl_konfirmasi', $data);
+
+        return $insert?$this->db->insert_id():false;
+    }
+
+    public function updateStatusBayar($id, $data)
+    {
+        $this->db->where('idOrder', $id);
+
+        $this->db->update('tbl_order', $data);
+    }
 }

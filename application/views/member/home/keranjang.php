@@ -74,14 +74,10 @@
                                                 <td style="padding-left: 25px;"><?php echo $i; ?></td>
                                                 <td><?php echo $item['name']; ?></td>
                                                 <td>
-                                                    <?php if (!empty($this->cart->product_options($item['rowid'])['image'])) { ?>
-                                                    <img src="<?php echo base_url(ltrim($this->cart->product_options($item['rowid'])['image'], './')); ?>"
+                                                    <?php $imageURL = !empty($item["image"])?base_url('assets/fotoproduk/'.$item["image"]):base_url('assets/images/pro-demo-img.jpeg'); ?>
+                                                    <img src="<?php echo $imageURL ?>"
                                                         alt="<?php echo $item['name']; ?>"
                                                         style="border: 1px solid; max-width: 150px; max-height: 150px;">
-                                                    <?php
-                                                    } else
-                                                        echo 'Tidak ada foto';
-                                                    ?>
                                                 </td>
                                                 <td><?php echo 'Rp' . number_format($item['price'], NULL, NULL, "."); ?>
                                                 </td>

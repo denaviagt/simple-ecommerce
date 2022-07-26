@@ -22,6 +22,7 @@
             </div>
             <div class="col-md-12">
                 <div class="alert alert-success">Pesanan berhasil dibuat. Silahkan Selesaikan pemabayaran.</div>
+                <?php echo $this->session->flashdata('message') ?>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -57,7 +58,7 @@
                                     foreach($order['items'] as $item){ ?>
                                         <tr>
                                             <td>
-                                                <?php $imageURL = !empty($item["foto"])?base_url('assets/fotoprofuk/'.$item["foto"]):base_url('assets/images/pro-demo-img.jpeg'); ?>
+                                                <?php $imageURL = !empty($item["foto"])?base_url('assets/fotoproduk/'.$item["foto"]):base_url('assets/images/pro-demo-img.jpeg'); ?>
                                                 <img src="<?php echo $imageURL; ?>" width="75" />
                                             </td>
                                             <td><?php echo $item["namaProduk"]; ?></td>
@@ -77,13 +78,23 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div>
+
+                            <div class="mt-5 ">
                                 <div class="card bg-info">
-                                    <div class="card-body">
-                                        <h6>Lakukkan pembayaran pada:</h6>
-                                        <p>JTRUST BANK</p>
-                                        <p>An. PT Toko Kita</p>
-                                        <p>No Rekening. 2133321123</p>
+                                    <div class="card-body text-center">
+                                        <h5>Lakukkan pembayaran pada:</h5>
+                                        <h6>JTRUST BANK</h6>
+                                        <h6>An. PT Toko Kita</h6>
+                                        <h6>Virtual Account. 232122222222311</h6>
+                                        <h6>Kode Bayar : 00<?=$order['idOrder']?></h6>
+                                        <?php if ($order['statusOrder'] == 'Belum Bayar') {?>
+                                        <button class="btn btn-secondary btn-lg btn-block" data-toggle="modal"
+                                            data-target="#konfirModal">Konfirmasi Pembayaran</button>
+                                        <?php } else { ?>
+                                        <div class="p-2 mt-2 bg-success rounded-lg">Pembayaran
+                                            Terkonfirmasi</div>
+
+                                        <?php }  ?>
 
                                     </div>
                                 </div>
@@ -96,6 +107,31 @@
             </div>
         </div>
     </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="konfirModal" tabindex="-1" aria-labelledby="konfirModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="konfirModalLabel">Konfirmasi Pembayaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <?php echo form_open_multipart('checkout/payment/'.$order['idOrder']); ?>
+            <div class="modal-body">
+                <input type="file" class="form-control-file" id="payment" name="payment">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <?php echo  form_close(); ?>
+
+        </div>
+    </div>
 </div>
 <?php } 
 else{ ?>

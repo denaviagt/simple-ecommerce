@@ -91,5 +91,47 @@ class Checkout extends CI_Controller{
     
         $this->template->load('layout_member', 'member/checkout/order-success', $data);
     }
+
+    public function payment($id_order)
+    {
+        if (empty($this->session->userdata('userName'))){
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" alert-dismissible fade show" role="alert">Login terlebih Dahulu! <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('home/login');
+        }else{
+            $tglTransfer     = date('Y-m-d H:i:s');
+            $idOrder        = $id_order;
+
+            $config['upload_path'] = './assets/buktitf';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('payment')) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" alert-dismissible fade show" role="alert">Upload bukti gagal!! <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('checkout/orderSuccess/'.$id_order);
+            } else {
+                $foto = $this->upload->data('file_name');
+            }
+
+            $data = [
+                'buktiTransfer'     => $foto,
+                'tglTransfer'       => $tglTransfer,
+                'idOrder'           => $idOrder,
+                'validasi'          => 'N'
+            ];
+            
+            $status_bayar = [
+                'statusOrder'    => 'Dikemas'
+            ];
+            $result = $this->Mfrontend->inputPayment($data);
+            $this->Mfrontend->updateStatusBayar($id_order, $status_bayar);
+            if ($result == false) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" alert-dismissible fade show" role="alert">Upload bukti transfer gagal! <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" alert-dismissible fade show" role="alert">Berhasil upload bukti transfer! <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            }
+            
+            redirect('checkout/orderSuccess/'.$id_order);
+        }
+    }
     
 }

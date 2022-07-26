@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Layout &rsaquo; Top Navigation &mdash; Stisla</title>
+    <title>TokoKita</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -35,7 +35,7 @@
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item active"><a href="#" class="nav-link">Tentang Tokokita</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Cara Belanja</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Produk</a></li>
                         <li class="nav-item"><a href="<?php echo site_url('Feedback/index') ?>"
                                 class="nav-link">Feedback</a></li>
                     </ul>
