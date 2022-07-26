@@ -16,12 +16,20 @@
                         </div>
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column">
-                                <li class="nav-item"><a href="<?php echo site_url('memberfe/index') ?>" class="nav-link">Beranda</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Transaksi</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Riwayat Transaksi</a></li>
-                                <li class="nav-item"><a href="<?php echo site_url('memberfe/toko') ?>" class="nav-link">Toko</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Ubah Profil</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+                                <ul class="nav nav-pills flex-column">
+                                    <li class="nav-item"><a href="<?php echo site_url('memberfe') ?>"
+                                            class="nav-link">Beranda</a></li>
+                                    <li class="nav-item"><a href="<?= site_url('home/cart')?>"
+                                            class="nav-link">Keranjang</a></li>
+                                    <li class="nav-item"><a href="#" class="nav-link">Transaksi</a></li>
+                                    <li class="nav-item"><a href="#" class="nav-link">Riwayat Transaksi</a></li>
+                                    <li class="nav-item"><a href="<?php echo site_url('toko') ?>"
+                                            class="nav-link">Toko</a>
+                                    </li>
+                                    <li class="nav-item"><a href="#" class="nav-link">Ubah Profil</a></li>
+                                    <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+                                </ul>
+
                             </ul>
                         </div>
                     </div>
@@ -34,8 +42,10 @@
                                     <div class="card-header">
                                         <h4>Form Membuat Toko Baru</h4>
                                     </div>
-                                    <input type="hidden" class="form-control" id="input statusAktif" name="statusAktif" value="Y">
-                                    <input type="hidden" class="form-control" id="input idKonsumen" name="idKonsumen" value='1'>
+                                    <input type="hidden" class="form-control" id="input statusAktif" name="statusAktif"
+                                        value="Y">
+                                    <input type="hidden" class="form-control" id="input idKonsumen" name="idKonsumen"
+                                        value='1'>
                                     <div class="card-body">
                                         <div class="alert alert-info">
                                             Silakan isi data dibawah ini untuk membuat toko
@@ -43,16 +53,19 @@
 
                                         <div class="form-group">
                                             <label>Nama Toko</label>
-                                            <input type="text" class="form-control" id="input namaToko" name="namaToko" required>
+                                            <input type="text" class="form-control" id="input namaToko" name="namaToko"
+                                                required>
                                         </div>
                                         <div class="form-group">
                                             <label>Deskripsi</label>
-                                            <textarea class="form-control" id="input deskripsi" name="deskripsi" required></textarea>
+                                            <textarea class="form-control" id="input deskripsi" name="deskripsi"
+                                                style="height: 100px" required></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Logo Toko</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="input logo" name="logo" required>
+                                                <input type="file" class="custom-file-input" id="input logo" name="logo"
+                                                    required>
                                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                             </div>
                                         </div>

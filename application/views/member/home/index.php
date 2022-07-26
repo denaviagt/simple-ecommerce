@@ -19,9 +19,6 @@
                                         src="<?= base_url() ?>assets/admin/assets/img/news/banner1.jpeg"
                                         alt="First slide">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Heading</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
@@ -29,9 +26,6 @@
                                         src="<?= base_url() ?>assets/admin/assets/img/news/banner2.jpeg"
                                         alt="Second slide">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Heading</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +47,7 @@
 
         <div class="section-body">
             <h2 class="section-title">Produk Terbaru</h2>
-            <p class="section-lead">This article component is based on card and flexbox.</p>
+
 
             <div class="row">
                 <?php foreach ($produk_terbaru as $val) { ?>
@@ -85,87 +79,6 @@
 
                 </div>
                 <?php } ?>
-
-
-            </div>
-
-
-            <h2 class="section-title">Produk Terlaris</h2>
-            <p class="section-lead">This article component is based on card and flexbox.</p>
-
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <article class="article">
-                        <div class="article-header">
-                            <div class="article-image" data-background="../assets/img/news/img08.jpg">
-                            </div>
-                            <div class="article-title">
-                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                            </div>
-                        </div>
-                        <div class="article-details">
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. </p>
-                            <div class="article-cta">
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <article class="article">
-                        <div class="article-header">
-                            <div class="article-image" data-background="../assets/img/news/img04.jpg">
-                            </div>
-                            <div class="article-title">
-                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                            </div>
-                        </div>
-                        <div class="article-details">
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. </p>
-                            <div class="article-cta">
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <article class="article">
-                        <div class="article-header">
-                            <div class="article-image" data-background="../assets/img/news/img09.jpg">
-                            </div>
-                            <div class="article-title">
-                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                            </div>
-                        </div>
-                        <div class="article-details">
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. </p>
-                            <div class="article-cta">
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <article class="article">
-                        <div class="article-header">
-                            <div class="article-image" data-background="../assets/img/news/img12.jpg">
-                            </div>
-                            <div class="article-title">
-                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
-                            </div>
-                        </div>
-                        <div class="article-details">
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. </p>
-                            <div class="article-cta">
-                                <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
             </div>
 
         </div>

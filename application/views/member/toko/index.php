@@ -16,13 +16,18 @@
                         </div>
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column">
-                                <li class="nav-item"><a href="<?php echo site_url('memberfe') ?>" class="nav-link">Beranda</a></li>
+                                <li class="nav-item"><a href="<?php echo site_url('memberfe') ?>"
+                                        class="nav-link">Beranda</a></li>
+                                <li class="nav-item"><a href="<?= site_url('home/cart')?>"
+                                        class="nav-link">Keranjang</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Transaksi</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Riwayat Transaksi</a></li>
-                                <li class="nav-item"><a href="<?php echo site_url('toko') ?>" class="nav-link">Toko</a></li>
+                                <li class="nav-item"><a href="<?php echo site_url('toko') ?>" class="nav-link">Toko</a>
+                                </li>
                                 <li class="nav-item"><a href="#" class="nav-link">Ubah Profil</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
                             </ul>
+
                         </div>
                     </div>
                 </div>
@@ -31,7 +36,8 @@
                         <div class="col-lg-12 col-md-6 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="<?php echo site_url('toko/add_toko') ?>" class="btn btn-primary">Silakan Membuat Toko</a>
+                                    <a href="<?php echo site_url('toko/add_toko') ?>" class="btn btn-primary">Silakan
+                                        Membuat Toko</a>
                                     <hr>
                                     <h4>Data Toko</h4>
                                 </div>
@@ -48,19 +54,20 @@
                                         </thead>
                                         <tbody>
                                             <?php foreach ($toko as $item) { ?>
-                                                <tr>
-                                                    <td><?= $item['namaToko']; ?></td>
-                                                    <td><?= $item['deskripsi']; ?></td>
-                                                    <td><?= $item['logo']; ?></td>
-                                                    <td><?php
+                                            <tr>
+                                                <td><?= $item['namaToko']; ?></td>
+                                                <td><?= $item['deskripsi']; ?></td>
+                                                <td><?= $item['logo']; ?></td>
+                                                <td><?php
                                                         if ($item['statusAktif'] == "Y") {
                                                             echo "<span class='badge badge-success'>AKTIF</span>";
                                                         } else {
                                                             echo "<span class='badge badge-danger'>TIDAK AKTIF</span>";
                                                         } ?></td>
-                                                    <td><a href="<?= base_url('index.php/toko/main/' . $item['idToko']) ?>" class="btn btn-primary">Detail</a>
-                                                    </td>
-                                                </tr>
+                                                <td><a href="<?= base_url('index.php/toko/main/' . $item['idToko']) ?>"
+                                                        class="btn btn-primary">Detail</a>
+                                                </td>
+                                            </tr>
                                             <?php } ?>
                                         </tbody>
                                     </table>
